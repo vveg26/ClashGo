@@ -1,0 +1,128 @@
+﻿<Window x:Class="ClashGo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClashGo"
+        xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+        xmlns:i="https://handyorg.github.io/handycontrol" 
+        xmlns:v="clr-namespace:ClashGo.ViewModel.Command" d:DataContext="{d:DesignInstance Type=v:MainWindowViewModel}"
+        mc:Ignorable="d"
+        Title="ClashGO" Height="375" Width="929" Icon="/clashgo.ico"   Visibility="Visible"
+        Loaded="Window_Loaded"
+        xmlns:tb="http://www.hardcodet.net/taskbar" xmlns:views="clr-namespace:ClashGo.Views">
+    <!--Load事件-->
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <v:EventCommand Command="{Binding MainLoad}"></v:EventCommand>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
+
+    <Grid Margin="7,2,817,5" RenderTransformOrigin="0.5,0.5">
+       
+        <views:GeneralSetting Margin="130,14,-772,4" Visibility="{Binding UI.General}"></views:GeneralSetting>
+        <views:ProfilesSetting Margin="130,14,-772,4" Visibility="{Binding UI.Profiles}"></views:ProfilesSetting>
+        <views:ProxiesSetting Margin="130,14,-772,4" Visibility="{Binding UI.Proxies}"></views:ProxiesSetting>
+        <views:OtherSetting Margin="238,14,-772,4" Visibility="{Binding UI.OtherSetting}" ></views:OtherSetting>
+            <controls:SideMenu HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="259" Width="171" RenderTransformOrigin="0.567,0.613">
+            <controls:SideMenuItem Header="基础配置" Height="66" Width="161" Command="{Binding GeneralShow}">
+            </controls:SideMenuItem>
+            <controls:SideMenuItem Header="节点选择" Height="63" Command="{Binding ProxiesShow}"></controls:SideMenuItem>
+            <controls:SideMenuItem Header="配置文件" Height="64"  Command="{Binding ProfilesShow}"></controls:SideMenuItem>
+            <controls:SideMenuItem Header="设置" Height="60" Command="{Binding OtherSettingShow}">
+            </controls:SideMenuItem>
+        </controls:SideMenu>
+        <i:DashedBorder Margin="0,0,-28,0"/>
+
+        <tb:TaskbarIcon x:Name="myNotifyIcon"
+                    Visibility="Visible"
+                    ToolTipText="click"
+                    IconSource="/clashgo.ico"
+                    
+                    MenuActivation="LeftOrRightClick"                   
+                    PopupActivation="DoubleClick" Margin="-125,283,187,55"                    
+      >         
+            
+            
+           
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="controlPanelTray" Header="控制面板">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <v:EventCommand Command="{Binding ControlPanel}"></v:EventCommand>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem x:Name="sysProxyTray" Header="系统代理" IsCheckable="True" IsChecked ="{Binding ConfigBase.SystemProxy}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <v:EventCommand Command="{Binding SetSystemProxy}"></v:EventCommand>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                     
+                    </MenuItem>
+                    
+                    <ComboBox ItemsSource="{Binding ModeList}" SelectedValue="{Binding ConfigBase.Mode}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <v:EventCommand Command="{Binding ModeComboBoxChanged}"></v:EventCommand>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+
+
+                    <MenuItem x:Name ="nodeChoose" Header=" 节点选择" AllowDrop="True" ItemsSource="{Binding NodeMenu}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseEnter">
+                                <v:EventCommand Command="{Binding NodeMenuUpdate}"></v:EventCommand>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem x:Name="subTray" Header="订阅管理"  AllowDrop="True">
+                        <MenuItem x:Name="AddSub" Header="添加订阅" />
+                        <MenuItem x:Name="SubManager" Header="管理订阅" />
+
+                    </MenuItem>
+
+                    <ComboBox ItemsSource="{Binding ProfilesList}" SelectedValue="{Binding ConfigBase.LastYaml}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <v:EventCommand Command="{Binding ProfileComboboxChanged}"></v:EventCommand>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox> 　
+　　　　　　　
+                    <Separator/>
+                    <MenuItem x:Name="runStartupTray" Header="开机自启" IsCheckable="True"/>
+                    <MenuItem x:Name="otherSettingTray" Header="其他设置" >
+                        <MenuItem x:Name="test1" Header="测试1" IsCheckable="True"/>
+                    </MenuItem>
+                    <Separator/>
+                    
+                    <MenuItem x:Name="exitTray" Header="退出">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <v:EventCommand Command="{Binding Exit}"></v:EventCommand>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </MenuItem>
+
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+
+
+
+    </Grid>
+
+
+
+
+
+
+</Window>

@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "dgSpecHash": "I9nmHSGBLb8Ij5eRRP5rpL1UrHc0A/Jb+QDW5abYf15mfQByMMM8uZBvq9smZovdEMX9TCYRdhNp/Nwmy4LoQw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\JXCW_3D\\Dropbox\\仓库\\Project\\ClashGo\\ClashGo\\ClashGo.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\JXCW_3D\\.nuget\\packages\\handycontrol\\3.3.0\\handycontrol.3.3.0.nupkg.sha512",
+    "C:\\Users\\JXCW_3D\\.nuget\\packages\\hardcodet.notifyicon.wpf\\1.1.0\\hardcodet.notifyicon.wpf.1.1.0.nupkg.sha512",
+    "C:\\Users\\JXCW_3D\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\JXCW_3D\\.nuget\\packages\\prism.core\\8.1.97\\prism.core.8.1.97.nupkg.sha512",
+    "C:\\Users\\JXCW_3D\\.nuget\\packages\\system.windows.interactivity.wpf\\2.0.20525\\system.windows.interactivity.wpf.2.0.20525.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "已使用“.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8”而不是项目目标框架“net5.0-windows7.0”还原包“System.Windows.Interactivity.WPF 2.0.20525”。此包可能与项目不完全兼容。",
+      "libraryId": "System.Windows.Interactivity.WPF",
+      "targetGraphs": [
+        "net5.0-windows7.0"
+      ]
+    }
+  ]
+}
